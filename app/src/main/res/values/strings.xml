@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TUD Rooms</string>
+    <string name="button_main">Show in Maps</string>
+    <string name="copied_snack">Copied to clipboard</string>
 </resources>

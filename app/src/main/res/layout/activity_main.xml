@@ -8,20 +8,48 @@
 
     <include layout="@layout/bar_layout" />
 
-    <Spinner
-        android:id="@+id/spinner_main"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal" />
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginEnd="@dimen/ll_margin"
+        android:layout_marginLeft="@dimen/ll_margin"
+        android:layout_marginRight="@dimen/ll_margin"
+        android:layout_marginStart="@dimen/ll_margin"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinner_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin" />
+
+        <Spinner
+            android:id="@+id/spinner_buildings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sp_margin" />
+
+        <TextView
+            android:id="@+id/textview_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:maxLines="1"
+            android:padding="@dimen/text_padding"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:borderWidth="0dp"
-        app:srcCompat="@drawable/ic_pin_drop"
-        app:useCompatPadding="true" />
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:src="@drawable/ic_pin_drop" />
 
 </android.support.design.widget.CoordinatorLayout>
