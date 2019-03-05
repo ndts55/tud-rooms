@@ -6,21 +6,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.Toolbar;
 import foss.ndts.tudrooms.data.BotanischerGarten;
 import foss.ndts.tudrooms.data.Hochschulstadion;
 import foss.ndts.tudrooms.data.Lichtwiese;
@@ -29,7 +31,10 @@ import foss.ndts.tudrooms.data.UniLocation;
 import foss.ndts.tudrooms.data.Windkanal;
 
 public class MainActivity extends AppCompatActivity {
-    private final String TAG = "TUDROOMS";
+    private static final String TAG = "TUD_ROOMS";
+    private static final String LocationKey = "SELECTED_LOCATION";
+    private static final String BuildingKey = "SELECTED_BUILDING";
+
     private final UniLocation[] uniLocations = {
             new Stadtmitte(), new BotanischerGarten(), new Lichtwiese(), new Hochschulstadion(), new Windkanal()
     };
@@ -38,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
     private int selectedBuilding = 0;
 
     private TextView addressText;
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        selectedLocation = savedInstanceState.getInt(LocationKey, 0);
+        selectedBuilding = savedInstanceState.getInt(BuildingKey, 0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         initializeFab();
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(LocationKey, selectedLocation);
+        outState.putInt(BuildingKey, selectedBuilding);
+    }
 
     private String[] displayNames() {
         String[] ret = new String[uniLocations.length];
@@ -73,67 +91,79 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // initialization methods
     private void initializeToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
     private void initializeTextView() {
-        addressText = (TextView) findViewById(R.id.textview_main);
+        addressText = findViewById(R.id.textview_main);
         addressText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText(TAG, ((TextView) view).getText());
-                clipboardManager.setPrimaryClip(clipData);
+                ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE))
+                        .setPrimaryClip(
+                                ClipData.newPlainText(TAG, ((TextView) view).getText())
+                        );
                 Snackbar.make(view, getString(R.string.copied_snack), Snackbar.LENGTH_SHORT).show();
             }
         });
     }
 
     private void initializeSpinner() {
-        final Spinner bSpinner = (Spinner) findViewById(R.id.spinner_buildings);
-        final ArrayAdapter<String> bAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
-        bSpinner.setAdapter(bAdapter);
-        bSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        final AppCompatSpinner buildingSpinner = findViewById(R.id.spinner_buildings);
+        final ArrayAdapter<String> buildingAdapter =
+                new ArrayAdapter<>(
+                        this,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        new ArrayList<String>());
+
+        buildingSpinner.setAdapter(buildingAdapter);
+
+        buildingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d(TAG, String.format(Locale.ENGLISH, "Clicked Building %d", i));
                 selectedBuilding = i;
                 addressText.setText(uniLocations[selectedLocation].addresses()[selectedBuilding]);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                selectedBuilding = 0;
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_main);
+        buildingSpinner.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "long click");
+                return false;
+            }
+        });
+
+        AppCompatSpinner spinner = findViewById(R.id.spinner_main);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, displayNames());
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, String.format(Locale.ENGLISH, "Clicked %d", i));
+                Log.d(TAG, String.format(Locale.ENGLISH, "Clicked Location %d", i));
                 selectedLocation = i;
-                bSpinner.setSelection(0);
-                bAdapter.clear();
-                bAdapter.notifyDataSetChanged();
-                bAdapter.addAll(Arrays.asList(uniLocations[selectedLocation].buildings()));
-                bAdapter.notifyDataSetChanged();
+                buildingSpinner.setSelection(0);
+                buildingAdapter.clear();
+                buildingAdapter.notifyDataSetChanged();
+                buildingAdapter.addAll(Arrays.asList(uniLocations[selectedLocation].buildings()));
+                buildingAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                selectedLocation = 0;
-                bSpinner.setSelection(0);
             }
         });
     }
 
     private void initializeFab() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_main);
+        FloatingActionButton fab = findViewById(R.id.fab_main);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

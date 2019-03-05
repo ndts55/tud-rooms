@@ -41,7 +41,6 @@ public class BotanischerGarten implements UniLocation {
             "Schnittspahnstraße 5, 64287, Darmstadt",
             "Schnittspahnstraße 2, 64287, Darmstadt",
             "Schnitspahnstraße, 64287, Darmstadt",
-
             "Schnittspahnstraße 9 64287 Darmstadt",
             "Schnittspahnstraße 9 64287 Darmstadt",
             "Schnittspahnstraße 10 64287 Darmstadt",
@@ -60,7 +59,9 @@ public class BotanischerGarten implements UniLocation {
         return String.format(Locale.ENGLISH, "%s\nBuildings:\t%d\nNames:\t%d\nAddresses:\t%d\n", Short, Buildings.length, Names.length, Addresses.length);
     }
 
-    public String displayName() {return DisplayName;}
+    public String displayName() {
+        return DisplayName;
+    }
 
     public String[] buildings() {
         return Buildings;
