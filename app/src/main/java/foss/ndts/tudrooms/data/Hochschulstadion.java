@@ -19,10 +19,6 @@ public class Hochschulstadion implements UniLocation {
             "Lichtwiesenweg 5 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 15 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 15 64287 Darmstadt", "Lichtwiesenweg 3 64287 Darmstadt", "Nieder-Ramstädter Straße 130, 130A 64287 Darmstadt", "Lichtwiesenweg 9A 64287 Darmstadt"
     };
 
-    public boolean isOk() {
-        return Buildings.length == Names.length && Names.length == Addresses.length;
-    }
-
     public String arrayLengths() {
         return String.format(Locale.ENGLISH, "%s\nBuildings:\t%d\nNames:\t%d\nAddresses:\t%d\n", Short, Buildings.length, Names.length, Addresses.length);
     }

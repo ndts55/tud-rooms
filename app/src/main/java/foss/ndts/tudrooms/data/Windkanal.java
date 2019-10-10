@@ -22,10 +22,6 @@ public class Windkanal implements UniLocation {
             "August-Euler-Flugplatz 7 64347 Darmstadt", "August-Euler-Flugplatz 19 64347 Darmstadt", "August-Euler-Flugplatz 9 64347 Darmstadt", "August-Euler-Flugplatz 11 64347 Darmstadt", "August-Euler-Flugplatz 1 64347 Darmstadt"
     };
 
-    public boolean isOk() {
-        return Buildings.length == Names.length && Names.length == Addresses.length;
-    }
-
     public String arrayLengths() {
         return String.format(Locale.ENGLISH, "%s\nBuildings:\t%d\nNames:\t%d\nAddresses:\t%d\n", Short, Buildings.length, Names.length, Addresses.length);
     }

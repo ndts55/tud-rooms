@@ -228,10 +228,6 @@ public class Stadtmitte implements UniLocation {
             "Dieburger Straße 241, 64287, Darmstadt"
     };
 
-    public boolean isOk() {
-        return Buildings.length == Names.length && Names.length == Addresses.length;
-    }
-
     public String arrayLengths() {
         return String.format(Locale.ENGLISH, "%s\nBuildings:\t%d\nNames:\t%d\nAddresses:\t%d\n", Short, Buildings.length, Names.length, Addresses.length);
     }

@@ -32,10 +32,6 @@ public class Lichtwiese implements UniLocation {
             "Franziska-Braun-Straße 7 64287 Darmstadt", "Günter-Behnisch-Straße 14 64287 Darmstadt", "Günter-Behnisch-Straße 12 64287 Darmstadt", "Günter-Behnisch-Straße 10 64287 Darmstadt", "Günter-Behnisch-Straße 8 64287 Darmstadt", "Franziska-Braun-Straße 3 64287 Darmstadt", "Franziska-Braun-Straße 5 64287 Darmstadt", "Günter-Behnisch-Straße 4 64287 Darmstadt", "Günter-Behnisch-Straße 2 64287 Darmstadt"
     };
 
-    public boolean isOk() {
-        return Buildings.length == Names.length && Names.length == Addresses.length;
-    }
-
     public String arrayLengths() {
         return String.format(Locale.ENGLISH, "%s\nBuildings:\t%d\nNames:\t%d\nAddresses:\t%d\n", Short, Buildings.length, Names.length, Addresses.length);
     }

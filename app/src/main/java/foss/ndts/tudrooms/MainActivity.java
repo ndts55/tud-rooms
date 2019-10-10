@@ -12,6 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -19,10 +24,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.appcompat.widget.Toolbar;
 import foss.ndts.tudrooms.data.BotanischerGarten;
 import foss.ndts.tudrooms.data.Hochschulstadion;
 import foss.ndts.tudrooms.data.Lichtwiese;
@@ -55,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        checkData();
-
         setContentView(R.layout.activity_main);
 
         initializeToolbar();
@@ -81,14 +80,6 @@ public class MainActivity extends AppCompatActivity {
             ret[i] = uniLocations[i].displayName();
         }
         return ret;
-    }
-
-    private void checkData() {
-        for (UniLocation u : uniLocations) {
-            if (!u.isOk()) {
-                Log.e(TAG, u.arrayLengths());
-            }
-        }
     }
 
     private void initializeToolbar() {
