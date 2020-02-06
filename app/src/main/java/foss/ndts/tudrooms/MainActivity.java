@@ -96,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeLocationNameView() {
         nameView = findViewById(R.id.location_name);
+        nameView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyToClipboard(((TextView) view).getText());
+                Snackbar.make(view, getString(R.string.copied_snack), Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initializeLocationAddressView() {
@@ -103,13 +110,7 @@ public class MainActivity extends AppCompatActivity {
         addressView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                if (cm == null) {
-                    return;
-                }
-                cm.setPrimaryClip(
-                        ClipData.newPlainText(TAG, ((TextView) view).getText())
-                );
+                copyToClipboard(((TextView) view).getText());
                 Snackbar.make(view, getString(R.string.copied_snack), Snackbar.LENGTH_SHORT).show();
             }
         });
@@ -187,5 +188,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void copyToClipboard(CharSequence text) {
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        if (cm == null) {
+            return;
+        }
+        cm.setPrimaryClip(ClipData.newPlainText(TAG, text));
     }
 }
