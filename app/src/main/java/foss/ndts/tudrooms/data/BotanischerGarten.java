@@ -24,20 +24,20 @@ public class BotanischerGarten implements UniLocation {
     };
 
     private static final String[] Names = {
-            "Botanik, Zoologie(Institutsgebäude mit Energiehaus",
-            "Botanik(Altbau",
+            "Botanik, Zoologie (Institutsgebäude mit Energiehaus)",
+            "Botanik (Altbau)",
             "Großes Gewächshaus",
             "Versuchsgewächshaus",
-            "Kalthauspflanzen(Gewächshaus",
-            "Orchideenhaus(Gewächshaus",
+            "Kalthauspflanzen (Gewächshaus)",
+            "Orchideenhaus (Gewächshaus)",
             "Mobi-Office I",
             "Infopavillon Botanischer Garten",
             "Angewandte Geowissenschaften und Hörsaal",
             "Angewandte Geowissenschaften",
             "Biologie Verfügungsgebäude",
             "Ökologisches Versuchsgewächshaus",
-            "Bioinnovationszentrum I(BIZ I",
-            "Bioinnovationszentrum II(BIZ II",
+            "Bioinnovationszentrum I (BIZ I)",
+            "Bioinnovationszentrum II (BIZ II)",
             "Mobi-Office II",
             "Studierendenzentrum Botanik, Cafe Bios"
     };

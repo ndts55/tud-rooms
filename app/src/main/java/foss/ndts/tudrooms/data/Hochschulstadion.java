@@ -25,7 +25,7 @@ public class Hochschulstadion implements UniLocation {
             "Hochschulstadion Schwimmbad mit Tribüne",
             "Kletterhalle Alpenverein",
             "Bürogebäude Unisport-Zentrum",
-            "Otto Wolfskehl-Haus(Internationales Gästehaus)",
+            "Otto Wolfskehl-Haus (Internationales Gästehaus)",
             "uniKITA-Waldkindergarten"
     };
 
