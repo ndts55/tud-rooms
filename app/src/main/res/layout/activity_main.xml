@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,15 +8,46 @@
 
     <include layout="@layout/bar_layout" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/location_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
         android:layout_marginStart="@dimen/ll_margin"
         android:layout_marginLeft="@dimen/ll_margin"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginEnd="@dimen/ll_margin"
         android:layout_marginRight="@dimen/ll_margin"
+        android:padding="@dimen/text_padding"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/text_size" />
+
+    <TextView
+        android:id="@+id/location_adr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ll_margin"
+        android:layout_marginLeft="@dimen/ll_margin"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginEnd="@dimen/ll_margin"
+        android:layout_marginRight="@dimen/ll_margin"
+        android:padding="@dimen/text_padding"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/text_size"
+        app:layout_anchor="@id/location_name"
+        app:layout_anchorGravity="bottom"
+        android:layout_gravity="bottom"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginStart="@dimen/ll_margin"
+        android:layout_marginLeft="@dimen/ll_margin"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginEnd="@dimen/ll_margin"
+        android:layout_marginRight="@dimen/ll_margin"
+        android:layout_marginBottom="@dimen/bottom_margin"
         android:orientation="vertical">
 
         <include
@@ -26,25 +58,11 @@
             android:id="@+id/spinner_buildings"
             layout="@layout/spinner" />
 
-        <TextView
-            android:id="@+id/textview_main"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/maps_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fab_margin"
-            android:maxLines="1"
-            android:padding="@dimen/text_padding"
-            android:textColor="@color/secondary_text"
-            android:textSize="@dimen/text_size" />
+            android:text="@string/show_maps" />
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:src="@drawable/ic_pin_drop" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
