@@ -37,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String BuildingKey = "SELECTED_BUILDING";
 
     private final UniLocation[] uniLocations = {
-            new Stadtmitte(), new BotanischerGarten(), new Lichtwiese(), new Hochschulstadion(), new Windkanal()
+            new Stadtmitte(),
+            new BotanischerGarten(),
+            new Lichtwiese(),
+            new Hochschulstadion(),
+            new Windkanal()
     };
 
     private int selectedLocation = 0;
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView addressText;
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         selectedLocation = savedInstanceState.getInt(LocationKey, 0);
         selectedBuilding = savedInstanceState.getInt(BuildingKey, 0);
@@ -92,10 +96,13 @@ public class MainActivity extends AppCompatActivity {
         addressText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE))
-                        .setPrimaryClip(
-                                ClipData.newPlainText(TAG, ((TextView) view).getText())
-                        );
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (cm == null) {
+                    return;
+                }
+                cm.setPrimaryClip(
+                        ClipData.newPlainText(TAG, ((TextView) view).getText())
+                );
                 Snackbar.make(view, getString(R.string.copied_snack), Snackbar.LENGTH_SHORT).show();
             }
         });
@@ -158,8 +165,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectedLocation >= 0 && selectedLocation < uniLocations.length && selectedBuilding >= 0 && selectedBuilding < uniLocations[selectedLocation].addresses().length) {
-                    Uri mapUri = Uri.parse(String.format("geo:0,0?q=%s", uniLocations[selectedLocation].addresses()[selectedBuilding]));
+                if (selectedLocation >= 0
+                        && selectedLocation < uniLocations.length
+                        && selectedBuilding >= 0
+                        && selectedBuilding < uniLocations[selectedLocation].addresses().length) {
+                    Uri mapUri = Uri.parse(
+                            String.format(
+                                    "geo:0,0?q=%s",
+                                    uniLocations[selectedLocation].addresses()[selectedBuilding]));
                     Intent intent = new Intent(Intent.ACTION_VIEW, mapUri);
                     startActivity(intent);
                 } else {
