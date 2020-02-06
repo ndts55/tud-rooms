@@ -2,6 +2,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="ll_margin">32dp</dimen>
     <dimen name="sp_margin">20dp</dimen>
-    <dimen name="text_size">12sp</dimen>
+    <dimen name="text_size">20sp</dimen>
     <dimen name="text_padding">10dp</dimen>
 </resources>

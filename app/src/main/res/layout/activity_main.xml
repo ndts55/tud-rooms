@@ -31,9 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fab_margin"
-            android:maxLines="1"
             android:padding="@dimen/text_padding"
-            android:textColor="@color/secondary_text"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="@dimen/text_size" />
     </LinearLayout>
 
@@ -45,6 +44,7 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
-        android:src="@drawable/ic_pin_drop" />
+        android:src="@drawable/ic_pin_drop"
+        android:tint="?android:attr/textColorPrimary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
