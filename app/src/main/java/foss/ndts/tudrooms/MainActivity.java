@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private int selectedLocation = 0;
     private int selectedBuilding = 0;
 
-    private TextView addressText;
+    private TextView nameView;
+    private TextView addressView;
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
@@ -64,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
         initializeToolbar();
 
-        initializeTextView();
+        initializeLocationNameView();
+
+        initializeLocationAddressView();
 
         initializeSpinner();
 
@@ -91,9 +94,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void initializeTextView() {
-        addressText = findViewById(R.id.textview_main);
-        addressText.setOnClickListener(new View.OnClickListener() {
+    private void initializeLocationNameView() {
+        nameView = findViewById(R.id.location_name);
+    }
+
+    private void initializeLocationAddressView() {
+        addressView = findViewById(R.id.location_adr);
+        addressView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -121,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
         buildingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, String.format(Locale.ENGLISH, "Clicked Building %d", i));
                 selectedBuilding = i;
-                addressText.setText(uniLocations[selectedLocation].addresses()[selectedBuilding]);
+                nameView.setText(uniLocations[selectedLocation].names()[selectedBuilding]);
+                addressView.setText(uniLocations[selectedLocation].addresses()[selectedBuilding]);
             }
 
             @Override
@@ -161,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeFab() {
-        FloatingActionButton fab = findViewById(R.id.fab_main);
-        fab.setOnClickListener(new View.OnClickListener() {
+        Button mapsButton = findViewById(R.id.maps_button);
+        mapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (selectedLocation >= 0
