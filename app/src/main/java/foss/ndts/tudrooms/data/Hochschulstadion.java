@@ -1,27 +1,46 @@
 package foss.ndts.tudrooms.data;
 
-import java.util.Locale;
-
 public class Hochschulstadion implements UniLocation {
-    private static final String Short = "H";
-
     private static final String DisplayName = "Hochschulstadion";
 
     private static final String[] Buildings = {
-            "H1|01", "H1|02", "H1|03", "H1|04", "H1|05", "H1|06", "H1|07", "H1|08", "H1|82", "H1|84"
+            "H1|01",
+            "H1|02",
+            "H1|03",
+            "H1|04",
+            "H1|05",
+            "H1|06",
+            "H1|07",
+            "H1|08",
+            "H1|82",
+            "H1|84"
     };
 
     private static final String[] Names = {
-            "Sporthallen", "Hochschulstadion, Laufbahn und Sitzterrassen", "unifit", "Hochschulstadion Kinderbadebecken", "Hochschulstadion Garderoben", "Hochschulstadion Schwimmbad mit Tribüne", "Kletterhalle Alpenverein", "Bürogebäude Unisport-Zentrum", "Otto Wolfskehl-Haus(Internationales Gästehaus)", "uniKITA-Waldkindergarten"
+            "Sporthallen",
+            "Hochschulstadion, Laufbahn und Sitzterrassen",
+            "unifit",
+            "Hochschulstadion Kinderbadebecken",
+            "Hochschulstadion Garderoben",
+            "Hochschulstadion Schwimmbad mit Tribüne",
+            "Kletterhalle Alpenverein",
+            "Bürogebäude Unisport-Zentrum",
+            "Otto Wolfskehl-Haus(Internationales Gästehaus)",
+            "uniKITA-Waldkindergarten"
     };
 
     private static final String[] Addresses = {
-            "Lichtwiesenweg 5 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 15 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 64287 Darmstadt", "Lichtwiesenweg 15 64287 Darmstadt", "Lichtwiesenweg 3 64287 Darmstadt", "Nieder-Ramstädter Straße 130, 130A 64287 Darmstadt", "Lichtwiesenweg 9A 64287 Darmstadt"
+            "Lichtwiesenweg 5 64287, Darmstadt",
+            "Lichtwiesenweg 64287, Darmstadt",
+            "Lichtwiesenweg 15 64287, Darmstadt",
+            "Lichtwiesenweg 64287, Darmstadt",
+            "Lichtwiesenweg 64287, Darmstadt",
+            "Lichtwiesenweg 64287, Darmstadt",
+            "Lichtwiesenweg 15 64287, Darmstadt",
+            "Lichtwiesenweg 3 64287, Darmstadt",
+            "Nieder-Ramstädter Straße 130, 130A 64287, Darmstadt",
+            "Lichtwiesenweg 9A 64287, Darmstadt"
     };
-
-    public String arrayLengths() {
-        return String.format(Locale.ENGLISH, "%s\nBuildings:\t%d\nNames:\t%d\nAddresses:\t%d\n", Short, Buildings.length, Names.length, Addresses.length);
-    }
 
     public String displayName() {
         return DisplayName;

@@ -1,16 +1,26 @@
 package foss.ndts.tudrooms.data;
 
 
-import java.util.Locale;
-
 public class BotanischerGarten implements UniLocation {
-    private static final String Short = "B";
-
     private static final String DisplayName = "Botanischer Garten";
 
     private static final String[] Buildings = {
-            "B1|01", "B1|02", "B1|03", "B1|04", "B1|06", "B1|07", "B1|08", "B1|70",
-            "B2|01", "B2|02", "B2|03", "B2|04", "B2|05", "B2|06", "B2|07", "B2|61",
+            "B1|01",
+            "B1|02",
+            "B1|03",
+            "B1|04",
+            "B1|06",
+            "B1|07",
+            "B1|08",
+            "B1|70",
+            "B2|01",
+            "B2|02",
+            "B2|03",
+            "B2|04",
+            "B2|05",
+            "B2|06",
+            "B2|07",
+            "B2|61",
     };
 
     private static final String[] Names = {
@@ -20,7 +30,7 @@ public class BotanischerGarten implements UniLocation {
             "Versuchsgewächshaus",
             "Kalthauspflanzen(Gewächshaus",
             "Orchideenhaus(Gewächshaus",
-            "Mobi - Office I",
+            "Mobi-Office I",
             "Infopavillon Botanischer Garten",
             "Angewandte Geowissenschaften und Hörsaal",
             "Angewandte Geowissenschaften",
@@ -28,7 +38,7 @@ public class BotanischerGarten implements UniLocation {
             "Ökologisches Versuchsgewächshaus",
             "Bioinnovationszentrum I(BIZ I",
             "Bioinnovationszentrum II(BIZ II",
-            "Mobi - Office II",
+            "Mobi-Office II",
             "Studierendenzentrum Botanik, Cafe Bios"
     };
 
@@ -41,19 +51,15 @@ public class BotanischerGarten implements UniLocation {
             "Schnittspahnstraße 5, 64287, Darmstadt",
             "Schnittspahnstraße 2, 64287, Darmstadt",
             "Schnitspahnstraße, 64287, Darmstadt",
-            "Schnittspahnstraße 9 64287 Darmstadt",
-            "Schnittspahnstraße 9 64287 Darmstadt",
-            "Schnittspahnstraße 10 64287 Darmstadt",
-            "Schnittspahnstraße 10A 64287 Darmstadt",
-            "Schnittspahnstraße 12 64287 Darmstadt",
-            "Schnittspahnstraße 13 64287 Darmstadt",
-            "Schnittspahnstraße 13 64287 Darmstadt",
-            "Schnittspahnstraße 11 64287 Darmstadt"
+            "Schnittspahnstraße 9, 64287, Darmstadt",
+            "Schnittspahnstraße 9, 64287, Darmstadt",
+            "Schnittspahnstraße 10, 64287, Darmstadt",
+            "Schnittspahnstraße 10A, 64287, Darmstadt",
+            "Schnittspahnstraße 12, 64287, Darmstadt",
+            "Schnittspahnstraße 13, 64287, Darmstadt",
+            "Schnittspahnstraße 13, 64287, Darmstadt",
+            "Schnittspahnstraße 11, 64287, Darmstadt"
     };
-
-    public String arrayLengths() {
-        return String.format(Locale.ENGLISH, "%s\nBuildings:\t%d\nNames:\t%d\nAddresses:\t%d\n", Short, Buildings.length, Names.length, Addresses.length);
-    }
 
     public String displayName() {
         return DisplayName;
