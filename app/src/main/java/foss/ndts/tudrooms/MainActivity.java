@@ -22,7 +22,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 import foss.ndts.tudrooms.data.BotanischerGarten;
 import foss.ndts.tudrooms.data.Hochschulstadion;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         initializeSpinner();
 
-        initializeFab();
+        initializeMapsButton();
     }
 
     @Override
@@ -129,21 +128,11 @@ public class MainActivity extends AppCompatActivity {
         buildingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedBuilding = i;
-                nameView.setText(uniLocations[selectedLocation].names()[selectedBuilding]);
-                addressView.setText(uniLocations[selectedLocation].addresses()[selectedBuilding]);
+                updateSelection(selectedLocation, i);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-        buildingSpinner.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "long click");
-                return false;
             }
         });
 
@@ -153,13 +142,11 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, String.format(Locale.ENGLISH, "Clicked Location %d", i));
-                selectedLocation = i;
                 buildingSpinner.setSelection(0);
                 buildingAdapter.clear();
+                buildingAdapter.addAll(Arrays.asList(uniLocations[i].buildings()));
                 buildingAdapter.notifyDataSetChanged();
-                buildingAdapter.addAll(Arrays.asList(uniLocations[selectedLocation].buildings()));
-                buildingAdapter.notifyDataSetChanged();
+                updateSelection(i, 0);
             }
 
             @Override
@@ -168,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initializeFab() {
+    private void initializeMapsButton() {
         Button mapsButton = findViewById(R.id.maps_button);
         mapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,8 +170,6 @@ public class MainActivity extends AppCompatActivity {
                                     uniLocations[selectedLocation].addresses()[selectedBuilding]));
                     Intent intent = new Intent(Intent.ACTION_VIEW, mapUri);
                     startActivity(intent);
-                } else {
-                    Log.e(TAG, "something wrong with selection");
                 }
             }
         });
@@ -196,5 +181,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         cm.setPrimaryClip(ClipData.newPlainText(TAG, text));
+    }
+
+    private void updateSelection(int location, int building) {
+        selectedLocation = location;
+        selectedBuilding = building;
+        nameView.setText(uniLocations[selectedLocation].names()[selectedBuilding]);
+        addressView.setText(uniLocations[selectedLocation].addresses()[selectedBuilding]);
     }
 }
