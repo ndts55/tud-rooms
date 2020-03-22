@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">TUD Räumlichkeiten</string>
-    <string name="button_main">In Maps öffnen</string>
     <string name="copied_snack">In Zwischenablage kopiert</string>
-    <string name="copy_clipboard">In Zwischenablage kopieren</string>
     <string name="show_maps">In Maps öffnen</string>
-    <string name="location_name">Name</string>
 </resources>
