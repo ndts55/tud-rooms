@@ -25,6 +25,7 @@
         android:id="@+id/location_adr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/ll_margin"
         android:layout_marginLeft="@dimen/ll_margin"
         android:layout_marginTop="?attr/actionBarSize"
@@ -34,9 +35,7 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/text_size"
         app:layout_anchor="@id/location_name"
-        app:layout_anchorGravity="bottom"
-        android:layout_gravity="bottom"
-        />
+        app:layout_anchorGravity="bottom" />
 
     <LinearLayout
         android:layout_width="match_parent"
